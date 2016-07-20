@@ -5,6 +5,7 @@ require 'tempfile'
 module InParallel
   include ParallelLogger
 
+  #test
   class InParallelExecutor
     # How many seconds between outputting to stdout that we are waiting for child processes.
     # 0 or < 0 means no signaling.
