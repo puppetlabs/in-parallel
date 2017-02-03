@@ -101,6 +101,19 @@ describe '.run_in_parallel' do
     expect(@result_2).to eq({ :foo => "bar" })
   end
 
+  it "should return large results" do
+    # 2**16 = 64k is typical buffer size
+    long_string = 'a' * (2**16+1)
+
+    expect do
+      run_in_parallel(timeout=1) do
+        @result = method_with_param(long_string)
+      end
+    end.not_to raise_error
+
+    expect(@result).to eq "bar + #{long_string}"
+  end
+
   it "should return a singleton class value" do
 
     run_in_parallel { @result = get_singleton_class }
