@@ -1,11 +1,18 @@
 # experimental_in-parallel_bump_and_tag_master - History
 ## Tags
-* [LATEST - 3 Feb, 2017 (206a62fe)](#LATEST)
+* [LATEST - 6 Feb, 2017 (27b497ea)](#LATEST)
+* [0.1.15 - 3 Feb, 2017 (ff16929c)](#0.1.15)
 * [0.1.14 - 8 Aug, 2016 (ce331dbd)](#0.1.14)
 * [0.1.13 - 8 Aug, 2016 (26d19934)](#0.1.13)
 
 ## Details
-### <a name = "LATEST">LATEST - 3 Feb, 2017 (206a62fe)
+### <a name = "LATEST">LATEST - 6 Feb, 2017 (27b497ea)
+
+* (GEM) update in-parallel version to 0.1.16 (27b497ea)
+
+### <a name = "0.1.15">0.1.15 - 3 Feb, 2017 (ff16929c)
+
+* (HISTORY) update in-parallel history for gem release 0.1.15 (ff16929c)
 
 * (GEM) update in-parallel version to 0.1.15 (206a62fe)
 
