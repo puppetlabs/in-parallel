@@ -228,23 +228,36 @@ describe '.each_in_parallel' do
 
   it 'should return correct values' do
     start_time = Time.now
-    items      = ['foo', 'bar', 'baz', 'blah', 'foobar'].each_in_parallel do |item|
+    items      = [1,2,3,4,5].each_in_parallel do |item|
       sleep(Random.rand(1.0))
-      item
+      item * 2
     end
     # return values should be an array of the returned items in the last line of the block, in correct order
-    expect(['foo', 'bar', 'baz', 'blah', 'foobar']).to eq(items)
+    expect(items).to eq([2,4,6,8,10])
     # time should be less than combined delay in the 3 block calls
     expect(expect(Time.now - start_time).to be < 5)
   end
 
   it 'should run each iteration of a map in parallel' do
-    items = ['foo', 'bar', 'baz'].map.each_in_parallel do |item|
+    items = [1,2,3].map.each_in_parallel do |item|
       puts item
-      item
+      item * 2
     end
     # return values should be an array of the returned items in the last line of the block, in correct order
-    expect(items).to eq(['foo', 'bar', 'baz'])
+    expect(items).to eq([2,4,6])
+  end
+
+  it 'should return an empty array and do nothing with an empty enumerator' do
+    result = [].each_in_parallel do |item|
+      raise "Incorrectly called the block with an empty enumerator"
+    end
+    expect(result).to eq []
+  end
+
+  it 'should return the result of the block with only 1 item in the enumerator' do
+      expect([1].each_in_parallel do |item|
+        item * 2
+      end).to eq([2])
   end
 
   it 'should not run in parallel if there is only 1 item in the enumerator' do
