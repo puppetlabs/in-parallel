@@ -1,12 +1,43 @@
 # experimental_in-parallel_bump_and_tag_master - History
 ## Tags
-* [LATEST - 6 Feb, 2017 (27b497ea)](#LATEST)
+* [LATEST - 6 Feb, 2017 (8e97ff25)](#LATEST)
+* [0.1.16 - 6 Feb, 2017 (0d5030c3)](#0.1.16)
 * [0.1.15 - 3 Feb, 2017 (ff16929c)](#0.1.15)
 * [0.1.14 - 8 Aug, 2016 (ce331dbd)](#0.1.14)
 * [0.1.13 - 8 Aug, 2016 (26d19934)](#0.1.13)
 
 ## Details
-### <a name = "LATEST">LATEST - 6 Feb, 2017 (27b497ea)
+### <a name = "LATEST">LATEST - 6 Feb, 2017 (8e97ff25)
+
+* (GEM) update in-parallel version to 0.1.17 (8e97ff25)
+
+* Merge pull request #17 from nicklewis/handle-non-parallel-enumerables (dca0b0a5)
+
+
+```
+Merge pull request #17 from nicklewis/handle-non-parallel-enumerables
+
+(maint) Properly handle non-parallel enumerables
+```
+* (maint) Properly handle non-parallel enumerables (b041b864)
+
+
+```
+(maint) Properly handle non-parallel enumerables
+
+For Enumerables containing 0 or 1 items, the #each_in_parallel method
+was improperly calling the block without an argument, then calling it
+again properly but not returning the result of the block.
+
+The #each method returns the Enumerable that was it was called on,
+rather than the value of the block. This needs to be #map instead, to
+actually return an array of the one or zero values. The tests weren't
+catching this because they were effectively passing `identity` as the
+block, nullifying the distinction between #each and #map.
+```
+### <a name = "0.1.16">0.1.16 - 6 Feb, 2017 (0d5030c3)
+
+* (HISTORY) update in-parallel history for gem release 0.1.16 (0d5030c3)
 
 * (GEM) update in-parallel version to 0.1.16 (27b497ea)
 
