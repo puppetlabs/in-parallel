@@ -16,9 +16,9 @@ module Enumerable
       end
       # return the array of values, no need to look up from the map.
       return InParallel::InParallelExecutor.wait_for_processes(nil, block.binding, timeout, kill_all_on_error)
+    else
+      # If fork is not supported
+      map(&block)
     end
-    # If fork is not supported
-    block.call
-    each(&block)
   end
 end
