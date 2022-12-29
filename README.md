@@ -94,10 +94,10 @@ hello world, bar
   run_in_background { create_file_with_delay(TMP_FILE) }
   
   # Should not exist immediately upon block completion
-  puts(File.exists?(TMP_FILE)) # false
+  puts(File.exist?(TMP_FILE)) # false
   sleep(3)
   # Should exist once the delay from create_file_with_delay is done
-  puts(File.exists?(TMP_FILE)) # true
+  puts(File.exist?(TMP_FILE)) # true
   ```
   ```ruby
   # Example 2 - delay results
