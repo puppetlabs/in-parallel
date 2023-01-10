@@ -152,7 +152,7 @@ module InParallel
                 end
                 results_map[process_info[:index]] = { process_info[:tmp_result] => marshalled_result }
               ensure
-                File.delete(process_info[:std_out]) if File.exists?(process_info[:std_out])
+                File.delete(process_info[:std_out]) if File.exist?(process_info[:std_out])
                 # close the read end pipe
                 process_info[:result].close unless process_info[:result].closed?
                 @@process_infos.delete(process_info)
@@ -185,7 +185,7 @@ module InParallel
       ret_val                   = nil
       # Communicate the return value of the method or block
       read_result, write_result = IO.pipe
-      Dir.mkdir('tmp') unless Dir.exists? 'tmp'
+      Dir.mkdir('tmp') unless Dir.exist? 'tmp'
       pid                       = fork do
         stdout_file = File.new("tmp/pp_#{Process.pid}", 'w')
         exit_status = 0

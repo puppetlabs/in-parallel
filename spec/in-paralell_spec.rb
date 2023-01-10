@@ -75,7 +75,7 @@ end
 #Tests
 describe '.run_in_parallel' do
   before do
-    File.delete(TMP_FILE) if File.exists?(TMP_FILE)
+    File.delete(TMP_FILE) if File.exist?(TMP_FILE)
   end
 
   it 'should run methods in another process' do
@@ -169,7 +169,7 @@ end
 
 describe '.run_in_background' do
   before do
-    File.delete(TMP_FILE) if File.exists?(TMP_FILE)
+    File.delete(TMP_FILE) if File.exist?(TMP_FILE)
   end
 
   it 'should run in the background' do
@@ -177,11 +177,11 @@ describe '.run_in_background' do
 
     start = Time.now
     # Should not exist immediately upon block completion
-    expect(File.exists? TMP_FILE).to eq false
+    expect(File.exist? TMP_FILE).to eq false
     # Give this some time to complete since it takes longer on the vmpooler vms
     file_exists = false
     while Time.now < start + 10 do
-      if File.exists? TMP_FILE
+      if File.exist? TMP_FILE
         file_exists = true
         break
       end
