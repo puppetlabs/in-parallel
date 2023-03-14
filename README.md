@@ -1,15 +1,30 @@
+# in-parallel
+
+- [in-parallel](#in-parallel)
+  - [Use Cases](#use-cases)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Methods](#methods)
+    - [run\_in\_parallel(timeout=nil, kill\_all\_on\_error = false, \&block)](#run_in_paralleltimeoutnil-kill_all_on_error--false-block)
+    - [Enumerable.each\_in\_parallel(identifier=nil, timeout=(InParallel::InParallelExecutor.timeout), kill\_all\_on\_error = false, \&block)](#enumerableeach_in_parallelidentifiernil-timeoutinparallelinparallelexecutortimeout-kill_all_on_error--false-block)
+    - [run\_in\_background(ignore\_results = true, \&block)](#run_in_backgroundignore_results--true-block)
+    - [wait\_for\_processes(timeout=nil, kill\_all\_on\_error = false)](#wait_for_processestimeoutnil-kill_all_on_error--false)
+  - [Global Options](#global-options)
 
 A lightweight Ruby library with very simple syntax, making use of Process.fork to execute code in parallel.
 
-# Use Cases
+## Use Cases
+
 Many other Ruby libraries that simplify parallel execution support one primary use case - crunching through a large queue of small, similar tasks as quickly and efficiently as possible.  This library primarily supports the use case of executing a few larger and unrelated tasks in parallel, automatically managing the stdout and passing return values back to the main process. This library was created to be used by Puppet's Beaker test framework to enable parallel execution of some of the framework's tasks, and allow users to execute code in parallel within their tests.
 
 If you are looking for something that excels at executing a large queue of tasks in parallel as efficiently as possible, you should take a look at the [parallel](https://github.com/grosser/parallel) project.
 
-# Install
+## Install
+
 ```gem install in-parallel```
 
-# Usage
+## Usage
+
 ```include InParallel``` to use as a mix-in
 
 The methods below allow you to fork processes to execute multiple methods or blocks within an enumerable in parallel.  They all have this common behavior:
@@ -24,7 +39,9 @@ The methods below allow you to fork processes to execute multiple methods or blo
 1. Will timeout (stop execution and raise an exception) based on a global timeout value, or timeout parameter.
 
 ## Methods
+
 ### run_in_parallel(timeout=nil, kill_all_on_error = false, &block)
+
 1. Each method in a block will be executed in parallel (unless the method is defined in Kernel or BaseObject).
     1. Any methods further down the stack won't be affected, only the ones directly within the block.
 1. Waits for each process in realtime and logs immediately upon completion of each process
@@ -53,8 +70,10 @@ The methods below allow you to fork processes to execute multiple methods or blo
   
   puts "#{@result_1}, #{@result_2[:foo]}"
 ```
+
 stdout:
-```
+
+```shell
 Forked process for 'method_with_param' - PID = '49398'
 Forked process for 'method_without_param' - PID = '49399'
 
@@ -67,7 +86,9 @@ hello world
 ------ Completed output for method_without_param - 49399
 hello world, bar
 ```
+
 ### Enumerable.each_in_parallel(identifier=nil, timeout=(InParallel::InParallelExecutor.timeout), kill_all_on_error = false, &block)
+
 1. This is very similar to other solutions, except that it directly extends the Enumerable class with an each_in_parallel method, giving you the ability to pretty simply spawn a process for any item in an array or map.
 1. Identifies the block location (or caller location if the block does not have a source_location) in the console log to make it clear which block is being executed
 1. Identifier param is only for logging, otherwise it will use the block source location.
@@ -77,6 +98,7 @@ hello world, bar
 ```
 
 ### run_in_background(ignore_results = true, &block)
+
 1. This does basically the same thing as run_in_parallel, except it does not wait for execution of all processes to complete, it returns immediately.
 1. You can optionally ignore results completely (default) or delay evaluating the results until later
 1. You can run multiple blocks in the background and then at some later point evaluate all of the results
@@ -99,6 +121,7 @@ hello world, bar
   # Should exist once the delay from create_file_with_delay is done
   puts(File.exist?(TMP_FILE)) # true
   ```
+
   ```ruby
   # Example 2 - delay results
   run_in_background(false) { @result = create_file_with_delay(TMP_FILE) }
@@ -118,13 +141,16 @@ hello world, bar
 ```
 
 ### wait_for_processes(timeout=nil, kill_all_on_error = false)
+
 1. Used only after run_in_background with ignore_results=false
 1. Optional args for timeout and kill_all_on_error
 1. See run_in_background for examples
 
 ## Global Options
+
 You can get or set the following values to set global defaults.  These defaults can also be specified per execution by supplying the values as parameters to the parallel methods.
-```
+
+```ruby
   # How many seconds to wait between logging a 'Waiting for child processes.' message. Defaults to 30 seconds
   parallel_signal_interval
 
@@ -136,4 +162,3 @@ You can get or set the following values to set global defaults.  These defaults 
   # the log level set here.
   @logger.log_level
 ```
-
