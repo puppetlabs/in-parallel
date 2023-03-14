@@ -1,0 +1,76 @@
+PATH
+  remote: .
+  specs:
+    in-parallel (1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (7.0.4.3)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+    concurrent-ruby (1.2.2)
+    diff-lcs (1.5.0)
+    docile (1.4.0)
+    i18n (1.12.0)
+      concurrent-ruby (~> 1.0)
+    iniparser (1.0.1)
+    kramdown (2.4.0)
+      rexml
+    logutils (0.6.1)
+    markdown (0.4.0)
+      kramdown (>= 0.13.7)
+      props (>= 0.2.0)
+      textutils (>= 0.2.0)
+    minitest (5.18.0)
+    props (1.2.0)
+      iniparser (>= 0.1.0)
+    rake (13.0.6)
+    rexml (3.2.5)
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
+    rspec-core (3.12.1)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-support (3.12.0)
+    rubyzip (2.3.2)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
+    textutils (1.4.0)
+      activesupport
+      logutils (>= 0.6.1)
+      props (>= 1.1.2)
+      rubyzip (>= 1.0.0)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    webrick (1.7.0)
+    yard (0.9.28)
+      webrick (~> 1.7.0)
+
+PLATFORMS
+  aarch64-linux
+  x86_64-linux
+
+DEPENDENCIES
+  in-parallel!
+  markdown (~> 0)
+  rake (>= 0.9.0)
+  rspec (~> 3.1)
+  simplecov
+  yard (~> 0)
+
+BUNDLED WITH
+   2.4.8
