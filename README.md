@@ -10,6 +10,7 @@
     - [run\_in\_background(ignore\_results = true, \&block)](#run_in_backgroundignore_results--true-block)
     - [wait\_for\_processes(timeout=nil, kill\_all\_on\_error = false)](#wait_for_processestimeoutnil-kill_all_on_error--false)
   - [Global Options](#global-options)
+  - [Releasing](#releasing)
 
 A lightweight Ruby library with very simple syntax, making use of Process.fork to execute code in parallel.
 
@@ -162,3 +163,12 @@ You can get or set the following values to set global defaults.  These defaults 
   # the log level set here.
   @logger.log_level
 ```
+
+## Releasing
+
+Follow these steps to publish a new GitHub release, and build and push the gem to <https://rubygems.org>.
+
+1. Bump the "VERSION" in lib/in-parallel/version.rb appropriately based on changes in CHANGELOG.md since the last release.
+2. Run `./release-prep` to update `Gemfile.lock` and `CHANGELOG.md`.
+3. Commit and push changes to a new branch, then open a pull request against main and be sure to add the "maintenance" label.
+4. After the pull request is approved and merged, then navigate to Actions --> Release Gem --> run workflow --> Branch: main --> Run workflow.
