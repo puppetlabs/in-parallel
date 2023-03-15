@@ -56,6 +56,7 @@ jobs:
           args: >-
             --since-tag ${{ steps.cv.outputs.result }}
             --future-release ${{ steps.nv.outputs.version }}
+            --base ''
             --output release-notes.md
         env:
           CHANGELOG_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
