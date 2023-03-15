@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# The container tag should closely match what is used in the testing and releasing GitHub Actions.
+docker run -it --rm \
+  -v $(pwd):/app \
+  ruby:3.2-slim-bullseye \
+  /bin/bash -c 'apt-get update -qq && apt-get install -y --no-install-recommends git make netbase && cd /app && gem install bundler && bundle install --jobs 3 && bundle update; echo "LOCK_FILE_UPDATE_EXIT_CODE=$?"'
