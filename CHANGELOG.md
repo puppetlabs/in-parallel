@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/puppetlabs/in-parallel/tree/1.0.1) (2023-08-24)
+
+[Full Changelog](https://github.com/puppetlabs/in-parallel/compare/1.0.0...1.0.1)
+
+**Merged pull requests:**
+
+- Bump activesupport from 7.0.4.3 to 7.0.7.2 [\#23](https://github.com/puppetlabs/in-parallel/pull/23) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [1.0.0](https://github.com/puppetlabs/in-parallel/tree/1.0.0) (2023-03-15)
 
 [Full Changelog](https://github.com/puppetlabs/in-parallel/compare/0.1.17...1.0.0)
